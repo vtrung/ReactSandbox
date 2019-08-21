@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import {parseString} from 'xml2js';
+import { Vehicle, CarQuery }from './components/vehicle';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+
+class App extends Component {
+  state = {
+    open: true,
+    isLoaded: false,
+    vehicle: []
+  }
+
+  toggleOpen = () => {
+    this.setState(prevState => ({
+      open : !prevState.open
+    }))
+  }
+
+  componentDidMount() {
+    
+  }
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+  }
+  
+  render(){
+
+    console.log(this.state);
+    const {phones} = this.props;
+    return (
+      <div>
+        <div className="car-container">
+        <CarQuery />
+        </div>
+        
+
+        {/* <h1>Phones</h1>
+        <p>{this.state.open ? 'open' : 'closed'}</p>
+        <button onClick={this.toggleOpen}>change</button>
+        <div>
+          {this.state.vehicle.make}
+        </div>
+        <ul>
+    
+          {phones.map((phone, i)=>(
+            <Phone key={i} phone={phone} />
+            // <li key={i}>Company: {phone.company} | {phone.name}</li>
+          ))}
+    
+        </ul> */}
+      </div>
+      
+    )
+  }
+};
+
+const Phone = ({phone, i}) => (
+  <li key={i}>Company: {phone.company} | {phone.name}</li>
+)
+
+
 
 export default App;
